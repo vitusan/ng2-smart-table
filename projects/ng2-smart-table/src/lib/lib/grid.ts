@@ -210,7 +210,7 @@ export class Grid {
         // doing nothing
       });
 
-    if (this.getSetting("delete.confirmRecycle")) {
+    if (this.getSetting("recycle.confirmRecycle")) {
       confirmEmitter.emit({
         data: row.getData(),
         source: this.source,
