@@ -1,4 +1,4 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -107,11 +107,14 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   private onDeselectRowSubscription: Subscription;
   private destroyed$: Subject<void> = new Subject<void>();
 
+  constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
+
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
-    console.log('changes to ng2-smart-table.component.ts', changes);
+    console.log("changes to ng2-smart-table.component.ts", changes);
     if (this.grid) {
       if (changes["settings"]) {
         this.grid.setSettings(this.prepareSettings());
+        this.changeDetectorRef.markForCheck();
       }
       if (changes["source"]) {
         this.source = this.prepareSource();
