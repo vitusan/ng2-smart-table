@@ -4,7 +4,6 @@ import {
   Component,
   ElementRef,
   Input,
-  OnChanges,
 } from "@angular/core";
 
 import { Grid } from "../../../lib/grid";
@@ -14,10 +13,13 @@ import { Grid } from "../../../lib/grid";
   template: ` <div class="ng2-smart-title">{{ actionsColumnTitle }}</div> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ActionsTitleComponent implements AfterViewInit, OnChanges {
+export class ActionsTitleComponent implements AfterViewInit {
+  _grid: Grid;
+
   @Input() set grid(grid: Grid) {
-    console.log('ActionsTitleComponent.set_grid()');
+    console.log("ActionsTitleComponent.set_grid()");
     this.actionsColumnTitle = grid.getSetting("actions.columnTitle");
+    this._grid = grid;
   }
 
   actionsColumnTitle: string;
@@ -26,10 +28,5 @@ export class ActionsTitleComponent implements AfterViewInit, OnChanges {
 
   ngAfterViewInit() {
     this.ref.nativeElement.classList.add("ng2-smart-actions");
-  }
-
-  ngOnChanges() {
-    console.log("ActionsTitleComponent.ngOnChanges()");
-    this.actionsColumnTitle = this.grid.getSetting("actions.columnTitle");
   }
 }
