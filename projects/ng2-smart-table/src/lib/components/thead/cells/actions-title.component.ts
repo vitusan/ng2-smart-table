@@ -1,4 +1,4 @@
-import {Component, Input, AfterViewInit, ElementRef, OnChanges} from '@angular/core';
+import {Component, Input, AfterViewInit, ElementRef, OnChanges, ChangeDetectionStrategy} from '@angular/core';
 
 import { Grid } from '../../../lib/grid';
 
@@ -7,6 +7,7 @@ import { Grid } from '../../../lib/grid';
   template: `
     <div class="ng2-smart-title">{{ actionsColumnTitle }}</div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActionsTitleComponent implements AfterViewInit, OnChanges {
 
@@ -22,6 +23,7 @@ export class ActionsTitleComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges() {
+    console.log("changes to actions-title.component.ts");
     this.actionsColumnTitle = this.grid.getSetting('actions.columnTitle');
   }
 }

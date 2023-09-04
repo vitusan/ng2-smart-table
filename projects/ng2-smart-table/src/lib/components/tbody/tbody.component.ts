@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, } from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy, } from '@angular/core';
 
 import { Grid } from '../../lib/grid';
 import { DataSource } from '../../lib/data-source/data-source';
@@ -7,9 +7,10 @@ import { Cell } from '../../lib/data-set/cell';
 @Component({
   selector: "[ng2-st-tbody]",
   styleUrls: ["./tbody.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./tbody.component.html",
 })
-export class Ng2SmartTableTbodyComponent {
+export class Ng2SmartTableTbodyComponent implements OnChanges {
   @Input() grid: Grid;
   @Input() source: DataSource;
   @Input() deleteConfirm: EventEmitter<any>;

@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 
 import { Grid } from '../../../lib/grid';
 
@@ -12,6 +12,7 @@ import { Grid } from '../../../lib/grid';
         [innerHTML]="cancelButtonContent"
         (click)="$event.preventDefault();grid.createFormShown = false;"></a>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActionsComponent implements OnChanges {
 

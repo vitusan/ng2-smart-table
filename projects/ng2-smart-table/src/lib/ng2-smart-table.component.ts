@@ -1,4 +1,4 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
+import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -12,6 +12,7 @@ import { LocalDataSource } from './lib/data-source/local/local.data-source';
   selector: "ng2-smart-table",
   styleUrls: ["./ng2-smart-table.component.scss"],
   templateUrl: "./ng2-smart-table.component.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   @Input() source: any;
@@ -107,6 +108,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   private destroyed$: Subject<void> = new Subject<void>();
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
+    console.log('changes to ng2-smart-table.component.ts', changes);
     if (this.grid) {
       if (changes["settings"]) {
         this.grid.setSettings(this.prepareSettings());
