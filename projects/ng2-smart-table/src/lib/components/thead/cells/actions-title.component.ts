@@ -1,16 +1,18 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   Input,
-  OnChanges
+  OnChanges,
 } from "@angular/core";
 
 import { Grid } from "../../../lib/grid";
 
 @Component({
   selector: "[ng2-st-actions-title]",
-  template: ` <div class="ng2-smart-title">{{ actionsColumnTitle }}</div> `
+  template: ` <div class="ng2-smart-title">{{ actionsColumnTitle }}</div> `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActionsTitleComponent implements AfterViewInit, OnChanges {
   @Input() grid: Grid;
