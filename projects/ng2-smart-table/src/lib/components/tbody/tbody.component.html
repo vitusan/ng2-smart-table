@@ -7,9 +7,11 @@
 
     <ng2-st-tbody-edit-delete [grid]="grid"
                               [deleteConfirm]="deleteConfirm"
+                              [recycleConfirm]="recycleConfirm"
                               [editConfirm]="editConfirm"
                               (edit)="edit.emit(row)"
                               (delete)="delete.emit(row)"
+                              (recycle)="recycle.emit(row)"
                               (editRowSelect)="editRowSelect.emit($event)"
                               [row]="row"
                               [source]="source">
@@ -39,11 +41,13 @@
 
     <ng2-st-tbody-edit-delete [grid]="grid"
                               [deleteConfirm]="deleteConfirm"
+                              [recycleConfirm]="recycleConfirm"
                               [editConfirm]="editConfirm"
                               [row]="row"
                               [source]="source"
                               (edit)="edit.emit(row)"
                               (delete)="delete.emit(row)"
+                              (recycle)="recycle.emit(row)"
                               (editRowSelect)="editRowSelect.emit($event)">
     </ng2-st-tbody-edit-delete>
   </td>
