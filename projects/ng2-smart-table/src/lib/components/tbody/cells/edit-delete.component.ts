@@ -105,8 +105,14 @@ export class TbodyEditDeleteComponent implements OnChanges {
   ngOnChanges() {
     this.isActionEdit = this.grid.getSetting("actions.edit");
     this.isActionDelete =
-      this.row.getData().deletable && !this.row.getData().deleted;
-    this.isActionRecycle = this.row.getData().deleted;
+      this.row.getData().hasOwnProperty("deletable") &&
+      this.row.getData().deletable &&
+      !this.row.getData().deleted &&
+      this.grid.getSetting("actions.delete");
+    this.isActionRecycle =
+      this.row.getData().hasOwnProperty("deletable") &&
+      this.row.getData().deleted &&
+      this.grid.getSetting("actions.recycle");
     this.editRowButtonContent = this.grid.getSetting("edit.editButtonContent");
     this.deleteRowButtonContent = this.grid.getSetting(
       "delete.deleteButtonContent"
