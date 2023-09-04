@@ -15,7 +15,10 @@ import { Grid } from "../../../lib/grid";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActionsTitleComponent implements AfterViewInit, OnChanges {
-  @Input() grid: Grid;
+  @Input() set grid(grid: Grid) {
+    console.log('ActionsTitleComponent.set_grid()');
+    this.actionsColumnTitle = grid.getSetting("actions.columnTitle");
+  }
 
   actionsColumnTitle: string;
 
