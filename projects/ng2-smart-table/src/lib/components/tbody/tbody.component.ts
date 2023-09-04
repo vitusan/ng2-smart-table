@@ -1,8 +1,17 @@
-import {Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy, } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+} from "@angular/core";
 
-import { Grid } from '../../lib/grid';
-import { DataSource } from '../../lib/data-source/data-source';
-import { Cell } from '../../lib/data-set/cell';
+import { Cell } from "../../lib/data-set/cell";
+import { DataSource } from "../../lib/data-source/data-source";
+import { Grid } from "../../lib/grid";
 
 @Component({
   selector: "[ng2-st-tbody]",
@@ -10,7 +19,7 @@ import { Cell } from '../../lib/data-set/cell';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./tbody.component.html",
 })
-export class Ng2SmartTableTbodyComponent implements OnChanges {
+export class Ng2SmartTableTbodyComponent implements OnChanges, OnInit {
   @Input() grid: Grid;
   @Input() source: DataSource;
   @Input() deleteConfirm: EventEmitter<any>;
@@ -41,9 +50,22 @@ export class Ng2SmartTableTbodyComponent implements OnChanges {
   isActionRecycle: boolean;
   noDataMessage: boolean;
 
+  constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    this.grid.onUpdateSettingsSource.subscribe(() => {
+      this.changeDetectorRef.detectChanges();
+    });
+  }
+
   get tableColumnsCount() {
     const actionColumns =
-      this.isActionAdd || this.isActionEdit || this.isActionDelete || this.isActionRecycle ? 1 : 0;
+      this.isActionAdd ||
+      this.isActionEdit ||
+      this.isActionDelete ||
+      this.isActionRecycle
+        ? 1
+        : 0;
     return this.grid.getColumns().length + actionColumns;
   }
 
