@@ -21,7 +21,7 @@ import { deepExtend, getPageForRowIndex } from "./lib/helpers";
   selector: "ng2-smart-table",
   styleUrls: ["./ng2-smart-table.component.scss"],
   templateUrl: "./ng2-smart-table.component.html",
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   @Input() source: any;
@@ -120,7 +120,9 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     console.log("changes to ng2-smart-table.component.ts", changes);
     if (this.grid) {
       if (changes["settings"]) {
-        this.grid.setSettings(this.prepareSettings());
+        setTimeout(() => {
+          this.grid.setSettings(this.prepareSettings());
+        }, 0);
       }
       if (changes["source"]) {
         this.source = this.prepareSource();

@@ -16,10 +16,9 @@ import { Grid } from "../../lib/grid";
 @Component({
   selector: "[ng2-st-tbody]",
   styleUrls: ["./tbody.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./tbody.component.html",
 })
-export class Ng2SmartTableTbodyComponent implements OnChanges, OnInit {
+export class Ng2SmartTableTbodyComponent implements OnChanges {
   @Input() grid: Grid;
   @Input() source: DataSource;
   @Input() deleteConfirm: EventEmitter<any>;
@@ -49,14 +48,6 @@ export class Ng2SmartTableTbodyComponent implements OnChanges, OnInit {
   isActionDelete: boolean;
   isActionRecycle: boolean;
   noDataMessage: boolean;
-
-  constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
-
-  ngOnInit(): void {
-    this.grid.onUpdateSettingsSource.subscribe(() => {
-      this.changeDetectorRef.detectChanges();
-    });
-  }
 
   get tableColumnsCount() {
     const actionColumns =

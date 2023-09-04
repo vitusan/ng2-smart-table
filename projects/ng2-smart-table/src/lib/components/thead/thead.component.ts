@@ -6,7 +6,6 @@ import { DataSource } from '../../lib/data-source/data-source';
 @Component({
     selector: '[ng2-st-thead]',
     templateUrl: './thead.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Ng2SmartTableTheadComponent implements OnChanges {
 

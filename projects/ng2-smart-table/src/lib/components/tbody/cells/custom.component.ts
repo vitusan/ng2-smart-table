@@ -1,9 +1,8 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
-  Output,
+  Output
 } from "@angular/core";
 import { Row } from "../../../lib/data-set/row";
 
@@ -11,7 +10,6 @@ import { Grid } from "../../../lib/grid";
 
 @Component({
   selector: "ng2-st-tbody-custom",
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <a
       *ngFor="let action of grid.getSetting('actions.custom')"

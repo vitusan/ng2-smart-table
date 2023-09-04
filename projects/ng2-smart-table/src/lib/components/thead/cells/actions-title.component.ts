@@ -1,42 +1,30 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   Input,
-  OnChanges,
-  OnInit,
+  OnChanges
 } from "@angular/core";
 
 import { Grid } from "../../../lib/grid";
 
 @Component({
   selector: "[ng2-st-actions-title]",
-  template: ` <div class="ng2-smart-title">{{ actionsColumnTitle }}</div> `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: ` <div class="ng2-smart-title">{{ actionsColumnTitle }}</div> `
 })
-export class ActionsTitleComponent implements AfterViewInit, OnChanges, OnInit {
+export class ActionsTitleComponent implements AfterViewInit, OnChanges {
   @Input() grid: Grid;
 
   actionsColumnTitle: string;
 
-  constructor(
-    private ref: ElementRef,
-    private readonly changeDetectorRef: ChangeDetectorRef
-  ) {}
-
-  ngOnInit(): void {
-    this.grid.onUpdateSettingsSource.subscribe(() => {
-      this.changeDetectorRef.detectChanges();
-    });
-  }
+  constructor(private ref: ElementRef) {}
 
   ngAfterViewInit() {
     this.ref.nativeElement.classList.add("ng2-smart-actions");
   }
 
   ngOnChanges() {
+    console.log("ActionsTitleComponent.ngOnChanges()");
     this.actionsColumnTitle = this.grid.getSetting("actions.columnTitle");
   }
 }

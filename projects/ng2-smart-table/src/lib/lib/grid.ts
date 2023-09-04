@@ -18,8 +18,6 @@ export class Grid {
   onSelectRowSource = new Subject<any>();
   onDeselectRowSource = new Subject<any>();
 
-  onUpdateSettingsSource = new Subject<any>();
-
   private sourceOnChangedSubscription: Subscription;
   private sourceOnUpdatedSubscription: Subscription;
 
@@ -69,8 +67,6 @@ export class Grid {
     if (this.source) {
       this.source.refresh();
     }
-
-    this.onUpdateSettingsSource.next();
   }
 
   getDataSet(): DataSet {

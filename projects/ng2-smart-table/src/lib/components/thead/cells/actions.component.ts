@@ -12,7 +12,6 @@ import { Grid } from '../../../lib/grid';
         [innerHTML]="cancelButtonContent"
         (click)="$event.preventDefault();grid.createFormShown = false;"></a>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActionsComponent implements OnChanges {
 
